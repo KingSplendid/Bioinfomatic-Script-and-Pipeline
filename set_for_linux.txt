@@ -19,6 +19,8 @@ PATH=$PATH:$HOME/bin
 
 #export PATH\
 
+
+
 # .bashrc
 
 # Source global definitions
