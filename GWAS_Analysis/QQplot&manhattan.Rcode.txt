@@ -1,0 +1,33 @@
+# 安装qqman包
+install.packages("qqman")
+library(qqman)
+# gwasResults 是系统自带的gwas分析结果范例；
+# 这个范例文件共4列，分别是：SNP-id,染色体编号，SNP坐标，P value;
+# 如果是你自己的数据，也整理成这个格式，然后read.table()读进来就ok了。
+head(gwasResults)
+#画个最基础的曼哈顿图，没有颜色；阈值线按照默认，会在-log10=5和8的位置画两天线；
+manhattan(gwasResults)
+#我们可以调用参数画更美丽的曼哈顿图;
+#添加标题 (main=), 限制Y轴范围 (ylim=), 减少点的大小到60% (cex=),减少X轴标签的字体大小到90%(cex.axis=). 
+#改变颜色(col=),去除suggestive的P值阈值线（默认为5），将genome-wide significance lines的值改为6(默认8)
+#按照我们自己的要求修改染色体的标签;
+manhattan(gwasResults, main = "Manhattan Plot", ylim = c(0, 10), cex = 0.6, 
+    cex.axis = 0.9, col = c("blue4", "orange3"), suggestiveline = F, genomewideline = 6, 
+    chrlabs = c(1:20, "P", "Q"))
+#试试仅查看1号染色体
+manhattan(subset(gwasResults, CHR == 1))
+#我们感兴趣的100个SNP，已经提前存储在了snpsOfInterest这个向量里； 
+# 查看这个向量试试
+snpsOfInterest
+#重点查看这100个SNP，并使用6为-logP的阈值,100个SNP将被高亮显示
+manhattan(gwasResults, highlight = snpsOfInterest,suggestiveline = F, genomewideline = 6)
+#试试仅仅查看3号染色体，并高亮显示我们感兴趣的SNP 
+#并使用xlim 参数缩放集中显示 200-500这个区间
+#不要为 xlim = c(0.0002,0.0005)感到奇怪，这个包的局部曼哈顿图的物理坐标单位是Mb，好像没法修改;
+manhattan(subset(gwasResults,CHR == 3), highlight = snpsOfInterest, xlim = c(0.0002,0.0005), 
+     main = "Chr 3",suggestiveline = F, genomewideline = 6)
+#为gwas分析的结果绘制QQ plot,仅仅使用 qq() 这个命令足够了
+qq(gwasResults$P)
+# 我们还可以QQ plot添加其他参数
+qq(gwasResults$P, main = "Q-Q plot of GWAS p-values", xlim = c(0, 6), ylim = c(0, 
+    9), pch = 18, col = "blue4", cex = 1.5, las = 1)
