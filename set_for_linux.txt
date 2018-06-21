@@ -1,0 +1,48 @@
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
+#export PS1='[\u@\h \w]\$ '
+
+#export PS1="\\e[32;1m\][\u@\h] \w/\n$ "
+
+export PS1="[\u@\h] \w/\n$ "
+
+PATH=$PATH:$HOME/bin
+
+#export LC_ALL=zh_CN.UTF-8
+
+#export PATH\
+
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+#User specific aliases and functions
+alias cl='clear'
+alias lss='less -S'
+alias .='cd ../'
+alias ..='cd ../../'
+alias ...='cd ../../..'
+alias test='cd /data2/Panel_Exome_Clinic_Analysis_Pipeline_hg19/New_pipline_2017v4/'
+alias latest='cd /data2/Panel_Exome_Clinic_Analysis_Pipeline_hg19/latest_version/'
+alias hbr='cd /data5/Statistic_samples/Calculate_after/HuangBaiRanC2017091200401/'
+alias xsr='cd /data5/Statistic_samples/Calculate_after/XuSiRanC2017081700701/'
+alias lxh='cd /data5/pipeline_test/Run147/'
+alias deaf='cd /data5/Statistic_samples/test/Deaf_170817_Run050_L5_20180108/'
+alias v4='cd /data2/Panel_Exome_Clinic_Analysis_Pipeline_hg19/ksPanelPipeline_2018v4/'
+
+
+# added by Miniconda2 installer
+export PATH="/home/lijunhui/miniconda2/bin:$PATH"
+export PATH="$PATH:/home/lijunhui/biosoft/MyBin/bin"
+
+export DISPLAY=:0.0
